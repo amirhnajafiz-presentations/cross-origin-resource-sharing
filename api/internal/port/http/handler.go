@@ -15,3 +15,13 @@ func (h *Handler) getTime(ctx *fiber.Ctx) error {
 
 	return ctx.SendString(s)
 }
+
+func (h *Handler) checkIp(ctx *fiber.Ctx) error {
+	var userRequest request
+
+	if err := ctx.BodyParser(&userRequest); err != nil {
+		return fmt.Errorf("body parse failed: %v", err)
+	}
+
+	return ctx.JSON(userRequest)
+}
