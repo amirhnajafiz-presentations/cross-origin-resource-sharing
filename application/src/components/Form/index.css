@@ -10,11 +10,37 @@
 
 .main_label {
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .main_submit {
-    margin-top: 20px;
+    margin-top: 40px;
     display: block;
     width: 100px;
+    padding: 10px 20px;
+    outline: none;
+    border: 1px solid #e8004b;
+    background: #d93b57;
+    color: #ffffff;
+    border-radius: 4px;
+    transition: background-color 0.5s;
+}
+
+.main_submit:hover {
+    background: #e8004b;
+}
+
+.input_form {
+    width: 220px;
+    overflow: scroll;
+    padding: 10px;
+    border: 1px solid #d0d0d0;
+    outline: none;
+    transition: border 0.5s;
+    background-color: #d0d0d0;
+    border-radius: 2px;
+}
+
+.input_form:hover, .input_form:focus {
+    border: 1px solid black;
 }

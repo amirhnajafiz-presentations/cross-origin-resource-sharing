@@ -17,8 +17,9 @@ function MyForm() {
   return (
     <form onSubmit={handleSubmit} className={"main_form"}>
     <label style={{display: "block"}}>
-        <span className={"main_label"}>Enter your IP list</span>
+        <span className={"main_label"}>Enter your IP list:</span>
         <input
+          className={"input_form"}
           type="text"
           value={ip}
           onChange={(e) => setIp(e.target.value)}
