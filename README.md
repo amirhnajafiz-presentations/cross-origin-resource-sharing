@@ -58,7 +58,7 @@ Let's create a HTTP server with Golang that has the following endpoints and runs
     "method": "GET",
     "response": {
       "time": "19:05:22 GMT",
-      "time-zone": "asia",
+      "time-zone": "asia"
     }
   },
   {
@@ -70,12 +70,17 @@ Let's create a HTTP server with Golang that has the following endpoints and runs
       }
     ],
     "body": {
-      "ip": "127.0.0.1"
+      "ip": ["127.0.0.1", "127.0.2"]
     },
-    "response": {
-      "result": "valid/invalid"
+    "response": [
+        {
+          "127.0.0.1": "valid"
+        },
+        {
+          "127.0.2": "invalid"
+        }
+      ]
     }
-  }
 ]
 ```
 
