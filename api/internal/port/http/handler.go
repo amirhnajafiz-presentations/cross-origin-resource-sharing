@@ -18,22 +18,22 @@ func (h *Handler) getTime(ctx *fiber.Ctx) error {
 	// get the current time
 	currentTime := time.Now()
 
+	// get time zone
+	zone, _ := currentTime.Zone()
+
 	// create time format
 	timeString := fmt.Sprintf(
 		timeFormat,
 		currentTime.Hour(),
 		currentTime.Minute(),
 		currentTime.Second(),
-		currentTime.Location().String(),
+		zone,
 	)
-
-	// get time zone
-	zone, _ := currentTime.Zone()
 
 	// create response
 	r := response{
 		Time:     timeString,
-		TimeZone: zone,
+		TimeZone: currentTime.Location().String(),
 	}
 
 	return ctx.JSON(r)
