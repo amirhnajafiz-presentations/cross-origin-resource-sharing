@@ -31,7 +31,7 @@ func (h *Handler) getTime(ctx *fiber.Ctx) error {
 	zone, _ := currentTime.Zone()
 
 	// create response
-	r := timeResponse{
+	r := response{
 		time:     timeString,
 		timeZone: zone,
 	}
@@ -39,7 +39,7 @@ func (h *Handler) getTime(ctx *fiber.Ctx) error {
 	return ctx.JSON(r)
 }
 
-func (h *Handler) checkIp(ctx *fiber.Ctx) error {
+func (h *Handler) checkIps(ctx *fiber.Ctx) error {
 	// create user request instance
 	var userRequest request
 
@@ -64,4 +64,9 @@ func (h *Handler) checkIp(ctx *fiber.Ctx) error {
 	}
 
 	return ctx.JSON(results)
+}
+
+func (h *Handler) Register(app *fiber.Group) {
+	app.Get("/api/time", h.getTime)
+	app.Post("/api/ip", h.checkIps)
 }
