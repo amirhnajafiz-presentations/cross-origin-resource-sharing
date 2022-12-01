@@ -7,13 +7,35 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+const (
+	timeFormat = "%02d:%02d:%02d %s"
+)
+
 type Handler struct{}
 
 func (h *Handler) getTime(ctx *fiber.Ctx) error {
-	t := time.Now()
-	s := fmt.Sprintf("%02d:%02d:%02d %s", t.Hour(), t.Minute(), t.Second(), t.Location().String())
+	// get the current time
+	currentTime := time.Now()
 
-	return ctx.SendString(s)
+	// create time format
+	timeString := fmt.Sprintf(
+		timeFormat,
+		currentTime.Hour(),
+		currentTime.Minute(),
+		currentTime.Second(),
+		currentTime.Location().String(),
+	)
+
+	// get time zone
+	zone, _ := currentTime.Zone()
+
+	// create response
+	r := timeResponse{
+		time:     timeString,
+		timeZone: zone,
+	}
+
+	return ctx.JSON(r)
 }
 
 func (h *Handler) checkIp(ctx *fiber.Ctx) error {
