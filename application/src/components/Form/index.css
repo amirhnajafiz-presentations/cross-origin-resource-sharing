@@ -1,7 +1,5 @@
 .main_form {
     width: 100%;
-    margin: 150px auto;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
