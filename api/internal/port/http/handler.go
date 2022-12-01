@@ -32,8 +32,8 @@ func (h *Handler) getTime(ctx *fiber.Ctx) error {
 
 	// create response
 	r := response{
-		time:     timeString,
-		timeZone: zone,
+		Time:     timeString,
+		TimeZone: zone,
 	}
 
 	return ctx.JSON(r)
@@ -52,7 +52,7 @@ func (h *Handler) checkIps(ctx *fiber.Ctx) error {
 	results := make(map[string]string)
 
 	// check ips validations
-	for _, ip := range userRequest.ip {
+	for _, ip := range userRequest.Ip {
 		trial := net.ParseIP(ip)
 		if trial.To4() != nil {
 			results[ip] = "valid"
@@ -66,7 +66,7 @@ func (h *Handler) checkIps(ctx *fiber.Ctx) error {
 	return ctx.JSON(results)
 }
 
-func (h *Handler) Register(app *fiber.Group) {
+func (h *Handler) Register(app *fiber.App) {
 	app.Get("/api/time", h.getTime)
 	app.Post("/api/ip", h.checkIps)
 }

@@ -1,6 +1,6 @@
 package http
 
 type response struct {
-	time     string `json:"time"`
-	timeZone string `json:"time-zone"`
+	Time     string `json:"time"`
+	TimeZone string `json:"time-zone"`
 }

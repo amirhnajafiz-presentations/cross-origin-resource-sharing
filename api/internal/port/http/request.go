@@ -1,5 +1,5 @@
 package http
 
 type request struct {
-	ip []string `json:"ip"`
+	Ip []string `json:"ip"`
 }
