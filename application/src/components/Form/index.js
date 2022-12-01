@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './index.css';
 
 function MyForm() {
   const [ip, setIp] = useState("");
@@ -6,19 +7,24 @@ function MyForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    if (ip === "") {
+        return
+    }
+
     alert(`The name you entered was: ${ip}`);
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Enter your name:
-        <input 
-          type="text" 
+    <form onSubmit={handleSubmit} className={"main_form"}>
+    <label style={{display: "block"}}>
+        <span className={"main_label"}>Enter your IP list</span>
+        <input
+          type="text"
           value={ip}
           onChange={(e) => setIp(e.target.value)}
         />
       </label>
-      <input type="submit" value="Send" />
+      <input className={"main_submit"} type="submit" value="Send" />
     </form>
   )
 }
