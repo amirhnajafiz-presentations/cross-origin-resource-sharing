@@ -1,6 +1,7 @@
 package http
 
 import (
+	"context"
 	"fmt"
 	"time"
 
@@ -19,6 +20,11 @@ func (h *Handler) Namespace(ctx *fiber.Ctx) error {
 }
 
 func (h *Handler) Health(ctx *fiber.Ctx) error {
+	// ping mongodb
+	if er := h.Mongo.Client().Ping(context.TODO(), nil); er != nil {
+		return fmt.Errorf("mongodb ping failed: %v", er)
+	}
+
 	return ctx.SendString(fmt.Sprintf("OK\n\t%s", time.Now().String()))
 }
 
