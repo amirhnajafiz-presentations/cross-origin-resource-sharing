@@ -5,9 +5,13 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v2"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
-type Handler struct{}
+// Handler manages the http endpoint methods.
+type Handler struct {
+	Mongo *mongo.Database
+}
 
 func (h *Handler) Namespace(ctx *fiber.Ctx) error {
 	// todo: make http request to get repositories or tags
