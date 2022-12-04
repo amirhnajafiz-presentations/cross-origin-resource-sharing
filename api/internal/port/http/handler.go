@@ -19,9 +19,13 @@ func (h *Handler) Namespace(ctx *fiber.Ctx) error {
 	return ctx.SendString("hello world")
 }
 
+// Health method returns a status of our service.
 func (h *Handler) Health(ctx *fiber.Ctx) error {
+	// creating a context
+	mongoContext := context.TODO()
+
 	// ping mongodb
-	if er := h.Mongo.Client().Ping(context.TODO(), nil); er != nil {
+	if er := h.Mongo.Client().Ping(mongoContext, nil); er != nil {
 		return fmt.Errorf("mongodb ping failed: %v", er)
 	}
 
