@@ -49,6 +49,8 @@ func (h *Handler) UserGithubRepos(ctx *fiber.Ctx) error {
 
 			return errParsingModel
 		}
+
+		log.Println("used cache")
 	} else {
 		// creating http request
 		req, err := http.NewRequest(
