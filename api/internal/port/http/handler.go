@@ -2,11 +2,16 @@ package http
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"go.mongodb.org/mongo-driver/mongo"
+)
+
+var (
+	errEmptyUser = errors.New("user cannot be empty")
 )
 
 // Handler manages the http endpoint methods.
@@ -15,6 +20,12 @@ type Handler struct {
 }
 
 func (h *Handler) Namespace(ctx *fiber.Ctx) error {
+	// get the user from request
+	user := ctx.Params("user", "")
+	if user == "" {
+		return errEmptyUser
+	}
+
 	// todo: make http request to get repositories or tags
 	return ctx.SendString("hello world")
 }
