@@ -19,7 +19,7 @@ type Handler struct {
 	Mongo *mongo.Database
 }
 
-func (h *Handler) Namespace(ctx *fiber.Ctx) error {
+func (h *Handler) UserGithubRepos(ctx *fiber.Ctx) error {
 	// get the user from request
 	user := ctx.Params("user", "")
 	if user == "" {
@@ -45,5 +45,5 @@ func (h *Handler) Health(ctx *fiber.Ctx) error {
 
 func (h *Handler) Register(app *fiber.App) {
 	app.Get("/api/health", h.Health)
-	app.Get("/api/user/:user", h.Namespace)
+	app.Get("/api/user/:user", h.UserGithubRepos)
 }
