@@ -34,5 +34,5 @@ func (h *Handler) Health(ctx *fiber.Ctx) error {
 
 func (h *Handler) Register(app *fiber.App) {
 	app.Get("/api/health", h.Health)
-	app.Get("/api/namespace/:namespace/repository/:repository/tags", h.Namespace)
+	app.Get("/api/user/:user", h.Namespace)
 }

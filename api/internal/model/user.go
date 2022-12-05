@@ -1,7 +1,7 @@
 package model
 
-// Namespace model.
-type Namespace struct {
+// User model.
+type User struct {
 	Name  string `bson:"name"`
 	Value string `bson:"value"`
 }
