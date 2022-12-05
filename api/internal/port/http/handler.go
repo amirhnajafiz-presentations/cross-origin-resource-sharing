@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"time"
 
@@ -75,6 +76,13 @@ func (h *Handler) UserGithubRepos(ctx *fiber.Ctx) error {
 
 		userModel.Name = user
 		userModel.Value = string(body)
+
+		// saving the model inside mongodb
+		go func() {
+			if _, er := h.Mongo.Collection("users").InsertOne(ctx.Context(), userModel, nil); er != nil {
+				log.Printf("cannot store user in mongodb:\n\t%v\n\t%s\n", er, userModel.Name)
+			}
+		}()
 	}
 
 	// creating a new response
