@@ -45,6 +45,8 @@ func (h *Handler) UserGithubRepos(ctx *fiber.Ctx) error {
 	if res := h.Mongo.Collection("users").FindOne(ctx.Context(), filter, nil); res.Err() == nil {
 		// parsing the result
 		if err := res.Decode(&userModel); err != nil {
+			log.Printf("decode model failed:\n\t%v\n", err)
+
 			return errParsingModel
 		}
 	} else {
@@ -55,6 +57,8 @@ func (h *Handler) UserGithubRepos(ctx *fiber.Ctx) error {
 			nil,
 		)
 		if err != nil {
+			log.Printf("create http request failed:\n\t%v\n", err)
+
 			return errHttpRequest
 		}
 
@@ -64,6 +68,8 @@ func (h *Handler) UserGithubRepos(ctx *fiber.Ctx) error {
 		// getting the response
 		resp, err := client.Do(req)
 		if err != nil {
+			log.Printf("connecting to github failed:\n\t%v\n", err)
+
 			return errGitHub
 		}
 
