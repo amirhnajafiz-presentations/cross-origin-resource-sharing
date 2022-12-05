@@ -4,6 +4,8 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/frontend-developing/cross-origin-resource-sharing/api/internal/model"
+	"go.mongodb.org/mongo-driver/bson"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
@@ -11,7 +13,8 @@ import (
 )
 
 var (
-	errEmptyUser = errors.New("user cannot be empty")
+	errEmptyUser    = errors.New("user cannot be empty")
+	errParsingModel = errors.New("parsing model failed")
 )
 
 // Handler manages the http endpoint methods.
@@ -26,8 +29,27 @@ func (h *Handler) UserGithubRepos(ctx *fiber.Ctx) error {
 		return errEmptyUser
 	}
 
-	// todo: make http request to get repositories or tags
-	return ctx.SendString("hello world")
+	// creating mongo filter
+	filter := bson.M{"name": user}
+
+	// creating an empty model
+	var userModel model.User
+
+	// check to see that if we have user in mongo or not
+	if res := h.Mongo.Collection("users").FindOne(ctx.Context(), filter, nil); res.Err() == nil {
+		if err := res.Decode(&userModel); err != nil {
+			return errParsingModel
+		}
+	} else {
+
+	}
+
+	// creating a new response
+	response := Response{
+		Value: userModel.Value,
+	}
+
+	return ctx.JSON(response)
 }
 
 // Health method returns a status of our service.
