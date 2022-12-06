@@ -1,3 +1,6 @@
 .response {
-    margin: 50px 0 0;
+    margin: 100px 0 0;
+    padding: 50px 100px;
+
+    border-top: 2px solid #e8e8e8;
 }

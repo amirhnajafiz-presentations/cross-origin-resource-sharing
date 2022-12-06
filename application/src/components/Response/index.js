@@ -4,13 +4,16 @@ import './index.css';
 class Response extends React.Component {
     constructor(props) {
         super(props);
-        this.response = {value: 'No value'};
+
+        this.state = {
+            response: 'No value'
+        };
     }
 
     render() {
         return (
             <div className={"response"}>
-                { this.response.value }
+                { this.state.response }
             </div>
         )
     }
