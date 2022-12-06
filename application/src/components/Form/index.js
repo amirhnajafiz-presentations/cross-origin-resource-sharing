@@ -1,4 +1,7 @@
 import React from "react";
+
+import { fetchPostRequest } from '../../api.js'
+
 import './index.css';
 
 // Form component manages to handle the form submit.
@@ -22,6 +25,9 @@ class Form extends React.Component {
         if (this.state.user === "") {
             return
         }
+
+        // send http request
+        fetchPostRequest(this.state.user)
 
         alert(`Input:\n${this.state.user}`);
     }
