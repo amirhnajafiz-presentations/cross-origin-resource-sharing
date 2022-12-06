@@ -12,10 +12,10 @@ class Form extends React.Component {
         // setting the component state
         this.state = {
             user: ""
-        }
+        };
 
         // binding the submit method
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     // handle submits
@@ -27,9 +27,7 @@ class Form extends React.Component {
         }
 
         // send http request
-        fetchPostRequest(this.state.user)
-
-        alert(`Input:\n${this.state.user}`);
+        fetchPostRequest(this.state.user);
     }
 
     // change user
@@ -37,7 +35,7 @@ class Form extends React.Component {
         // setting the user new value
         this.setState({
             user: event.target.value
-        })
+        });
     }
 
     render() {
