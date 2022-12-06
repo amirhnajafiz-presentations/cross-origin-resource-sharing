@@ -1,9 +1,3 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid black;
-    width: 35%;
-    margin: 150px auto;
-    padding: 0 0 100px;
+#app {
+    font-size: 1.5em;
 }

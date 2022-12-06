@@ -1,8 +1,7 @@
 .nav {
-    background-color: black;
     width: 100%;
     margin-bottom: 50px;
-    color: #ffffff;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }

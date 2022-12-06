@@ -7,7 +7,7 @@ import './index.css';
 class App extends React.Component {
     render() {
       return (
-          <div className={"container"}>
+          <div id={"app"}>
               <Nav />
               <Form />
               <Response />
