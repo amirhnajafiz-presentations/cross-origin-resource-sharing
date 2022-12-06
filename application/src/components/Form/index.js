@@ -40,14 +40,16 @@ class Form extends React.Component {
                 onSubmit={this.handleSubmit}
             >
                 <label>
-                    <span>Enter name:</span>
+                    <span>Enter name</span>
                     <input
+                        className={"input-form"}
                         type="text"
                         value={this.state.use}
                         onChange={(e) => this.changeUser(e)}
                     />
                 </label>
                 <input
+                    className={"submit-btn"}
                     type="submit"
                     value="Send"
                 />

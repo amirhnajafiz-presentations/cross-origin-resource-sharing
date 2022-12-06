@@ -1,6 +1,11 @@
 .nav {
     width: 100%;
+
+    background-color: #eaeaea;
+    border-bottom: 4px solid #a2a2a2;
+
     margin-bottom: 50px;
+
     display: flex;
     justify-content: space-around;
     align-items: center;
