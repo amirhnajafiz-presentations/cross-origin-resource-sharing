@@ -38,6 +38,7 @@ class Form extends React.Component {
         return (
             <form
                 onSubmit={this.handleSubmit}
+                className={"form-container"}
             >
                 <label>
                     <span>Enter name</span>
