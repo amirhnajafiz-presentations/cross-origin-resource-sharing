@@ -1,33 +1,39 @@
-import { useState } from 'react';
+import React from "react";
 import './index.css';
 
-function MyForm() {
-  const [ip, setIp] = useState("");
+class Form extends React.Component {
+    state = { user: '' }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+    handleSubmit(event) {
+        event.preventDefault();
 
-    if (ip === "") {
-        return
+        if (this.state.user === "") {
+            return
+        }
+
+        alert(`Input:\n${this.state.user}`);
     }
 
-    alert(`The name you entered was: ${ip}`);
-  }
+    changeUser(event) {
+        this.setState({user: event.target.value})
+    }
 
-  return (
-    <form onSubmit={handleSubmit} className={"main_form"}>
-    <label style={{display: "block"}}>
-        <span className={"main_label"}>Enter your IP list:</span>
-        <input
-          className={"input_form"}
-          type="text"
-          value={ip}
-          onChange={(e) => setIp(e.target.value)}
-        />
-      </label>
-      <input className={"main_submit"} type="submit" value="Send" />
-    </form>
-  )
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit} className={"main_form"}>
+                <label style={{display: "block"}}>
+                    <span className={"main_label"}>Enter name:</span>
+                    <input
+                        className={"input_form"}
+                        type="text"
+                        value={this.state.user}
+                        onChange={(e) => this.changeUser(e)}
+                    />
+                </label>
+                <input className={"main_submit"} type="submit" value="Send" />
+            </form>
+        )
+    }
 }
 
-export {MyForm};
+export default Form;
