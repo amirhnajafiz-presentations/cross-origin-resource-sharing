@@ -1,9 +1,7 @@
 import React from 'react';
 
-import Nav from '../../components/Nav';
-import Response from "../../components/Response";
-
 import './index.css';
+
 
 const uri = "http://localhost:3030/api/user/";
 
@@ -13,6 +11,7 @@ class App extends React.Component {
 
         this.state = {
             user: "",
+            response: "No value",
         }
 
         // binding the submit method
@@ -34,9 +33,11 @@ class App extends React.Component {
             .then(response => response.json())
             .then(data => {
                 console.log(data)
+                this.updateResponse("OK")
             })
             .catch(e => {
                 console.log(e)
+                this.updateResponse("Not OK")
             })
     }
 
@@ -47,10 +48,34 @@ class App extends React.Component {
         })
     }
 
+    // update response message
+    updateResponse(message) {
+        this.setState({
+            response: message
+        })
+    }
+
     render() {
       return (
           <div id={"app"}>
-              <Nav />
+              <div className={"nav"}>
+                  <h4>
+                      <a
+                          rel={"noreferrer"}
+                          href={"https://www.github.com"}
+                          target={"_blank"}
+                      >
+                          <img
+                              src={"https://cdn-icons-png.flaticon.com/512/25/25231.png"}
+                              width={"50px"}
+                              alt={"github logo"}
+                          />
+                      </a>
+                  </h4>
+                  <h4>
+                      {this.state.response}
+                  </h4>
+              </div>
               <form
                   onSubmit={this.handleSubmit}
                   className={"form-container"}
@@ -70,7 +95,9 @@ class App extends React.Component {
                       value="Send"
                   />
               </form>
-              <Response />
+              <div className={"response"}>
+                  { this.state.response }
+              </div>
           </div>
       )
     }
