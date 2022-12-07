@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Nav from "../../components/Nav";
+
 import './index.css';
 
 
@@ -94,26 +96,11 @@ class App extends React.Component {
     render() {
       return (
           <div id={"app"}>
-              <div className={"nav"}>
-                  <h4>
-                      <a
-                          rel={"noreferrer"}
-                          href={"https://www.github.com"}
-                          target={"_blank"}
-                      >
-                          <img
-                              src={"https://cdn-icons-png.flaticon.com/512/25/25231.png"}
-                              width={"50px"}
-                              alt={"github logo"}
-                          />
-                      </a>
-                  </h4>
-                  <h4
-                      className={this.state.spanClass}
-                  >
-                      {this.state.responseCode !== 0 ? this.state.responseCode + ' - ' : ''}{this.state.response}
-                  </h4>
-              </div>
+              <Nav
+                  spanClass={this.state.spanClass}
+                  response={this.state.response}
+                  responseCode={this.state.responseCode}
+              />
               <form
                   onSubmit={this.handleSubmit}
                   className={"form-container"}

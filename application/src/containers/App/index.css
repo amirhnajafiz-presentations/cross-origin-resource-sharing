@@ -42,19 +42,6 @@
     align-items: center;
 }
 
-.nav {
-    width: 100%;
-
-    background-color: #eaeaea;
-    border-bottom: 4px solid #a2a2a2;
-
-    margin-bottom: 50px;
-
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
 .response {
     margin: 100px 0 0;
     padding: 50px 100px;
@@ -62,24 +49,4 @@
     border-top: 2px solid #e8e8e8;
 
     overflow: scroll;
-}
-
-.normal, .green-span, .red-span, .yellow-span {
-    padding: 10px;
-    border-radius: 3px;
-}
-
-.green-span {
-    background: darkslategrey;
-    color: #e8e8e8;
-}
-
-.red-span {
-    background: brown;
-    color: #e8e8e8;
-}
-
-.yellow-span {
-    background: coral;
-    color: #e8e8e8;
 }
