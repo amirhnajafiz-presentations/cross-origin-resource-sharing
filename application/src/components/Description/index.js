@@ -11,7 +11,7 @@ class Description extends React.Component {
                 </h2>
                 <p style={{textAlign: "justify"}}>
                     In this application, we are going to get Github users public repositories from our
-                    HTTP server that is running on <pre style={{display: "inline"}}>localhost:8080</pre>.
+                    HTTP server that is running on <b>localhost:8080</b>.
                     You can see that we don't get CORS error, because we are using a proxy server.<br />
                     By using a proxy server we will be able to send HTTP requests without CORS headers and
                     get the response from remote server that we want.

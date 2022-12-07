@@ -22,6 +22,7 @@ class App extends React.Component {
 
         // binding the submit method
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.resetForm = this.resetForm.bind(this);
     }
 
     // handle submits
@@ -114,6 +115,13 @@ class App extends React.Component {
         })
     }
 
+    // reset the input
+    resetForm() {
+        this.setState({
+            user: ""
+        })
+    }
+
     render() {
       return (
           <div id={"app"}>
@@ -137,15 +145,19 @@ class App extends React.Component {
                           onChange={(e) => this.update(e)}
                       />
                   </label>
-                  <input
-                      value="Clear"
-                      type="reset"
-                  />
-                  <input
-                      className={"submit-btn"}
-                      type="submit"
-                      value="Send"
-                  />
+                  <div>
+                      <input
+                          className={"clear-btn"}
+                          type="reset"
+                          value="Clear"
+                          onClick={this.resetForm}
+                      />
+                      <input
+                          className={"submit-btn"}
+                          type="submit"
+                          value="Send"
+                      />
+                  </div>
               </form>
               <Box
                   userInformation={this.state.userInformation}
