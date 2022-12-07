@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Nav from "../../components/Nav";
+import Box from "../../components/Box";
 
 import './index.css';
 
@@ -120,11 +121,9 @@ class App extends React.Component {
                       value="Send"
                   />
               </form>
-              <div className={"response"}>
-                  <pre>
-                      { this.state.userInformation }
-                  </pre>
-              </div>
+              <Box
+                  userInformation={this.state.userInformation}
+              />
           </div>
       )
     }

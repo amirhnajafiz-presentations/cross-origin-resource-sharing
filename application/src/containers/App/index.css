@@ -41,12 +41,3 @@
     flex-direction: column;
     align-items: center;
 }
-
-.response {
-    margin: 100px 0 0;
-    padding: 50px 100px;
-
-    border-top: 2px solid #e8e8e8;
-
-    overflow: scroll;
-}
