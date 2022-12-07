@@ -51,43 +51,10 @@ So, instead of requesting the target server, it sends the request to the proxy s
 
 Let's create a HTTP server with Golang that has the following endpoints and runs on ```localhost:8080```.
 
-```json
-[
-  {
-    "url": "/api/time",
-    "method": "GET",
-    "response": {
-      "time": "19:05:22 GMT",
-      "time-zone": "asia"
-    }
-  },
-  {
-    "url": "/api/ip",
-    "method": "POST",
-    "headers": [
-      {
-        "content-type": "application/json"
-      }
-    ],
-    "body": {
-      "ip": ["127.0.0.1", "127.0.2"]
-    },
-    "response": [
-        {
-          "127.0.0.1": "valid"
-        },
-        {
-          "127.0.2": "invalid"
-        }
-      ]
-    }
-]
-```
-
 ```shell
 cd api
 go build . -o ./main
-./main
+./main -mongoURI mongodb://127.0.0.1:27017/ -mongoDB cors
 ```
 
 Now let's create a React application that runs on ```localhost:3000```.
@@ -96,7 +63,3 @@ Now let's create a React application that runs on ```localhost:3000```.
 cd application
 npm start
 ```
-
-<p align="center">
-    <img src=".github/assets/demo.png" alt="demo" />
-</p>
