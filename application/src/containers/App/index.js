@@ -34,25 +34,47 @@ class App extends React.Component {
         // send http request
         fetchGetRequest(this.state.user)
             .then(response => {
-                this.updateResponseCode(response.status)
-                return response.json()
+                // get the code
+                const code = response.status;
+
+                // update the status code
+                this.updateResponseCode(code);
+
+                // status ok
+                if (code === 200) {
+                    this.updateSpanClass("green-span");
+
+                    return response.json();
+                } else if (code >= 400 && code < 500) {
+                    this.updateSpanClass('yellow-span');
+                } else if (code >= 500 && code < 600) {
+                    this.updateSpanClass("red-span");
+                } else {
+                    this.updateSpanClass("normal");
+                }
+
+                return null;
             })
             .then(data => {
-                let viewData = JSON.stringify(JSON.parse(data.value), null, 4)
+                if (data === null) {
+                    this.updateResponse("Not OK");
+                    this.updateUserInformation("No value");
 
-                this.updateResponse("OK")
-                this.updateSpanClass("green-span")
-                this.updateUserInformation(viewData)
+                    return;
+                }
+
+                let viewData = JSON.stringify(JSON.parse(data.value), null, 4);
+
+                this.updateResponse("OK");
+                this.updateUserInformation(viewData);
             })
             .catch(e => {
-                console.log(e)
-                this.updateResponse("Not OK")
-                if (this.state.responseCode >= 400 && this.state.responseCode < 500) {
-                    this.updateSpanClass('yellow-span')
-                } else if (this.state.responseCode >= 500 && this.state.responseCode < 600) {
-                    this.updateSpanClass("red-span")
-                }
-                this.updateUserInformation("No value")
+                console.error(e);
+
+                this.updateResponseCode(0)
+                this.updateSpanClass("normal");
+                this.updateResponse("Not OK");
+                this.updateUserInformation("No value");
             })
     }
 
