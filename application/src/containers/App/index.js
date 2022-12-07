@@ -3,10 +3,9 @@ import React from 'react';
 import Nav from "../../components/Nav";
 import Box from "../../components/Box";
 
+import {fetchGetRequest} from "../../api";
+
 import './index.css';
-
-
-const uri = "/api/user/";
 
 class App extends React.Component {
     constructor(props) {
@@ -32,10 +31,8 @@ class App extends React.Component {
             return
         }
 
-        let url = uri + this.state.user
-
         // send http request
-        fetch(url, null)
+        fetchGetRequest(this.state.user)
             .then(response => {
                 this.updateResponseCode(response.status)
                 return response.json()
