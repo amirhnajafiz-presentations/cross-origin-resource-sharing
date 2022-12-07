@@ -10,7 +10,7 @@
 
 <p align="center">
     <img src="https://img.shields.io/badge/Go-1.19-00ADD8?style=for-the-badge&logo=go" alt="go version" />
-    <img src="https://img.shields.io/badge/React-18.2-FFFF22?style=for-the-badge&logo=react" alt="go version" />
+    <img src="https://img.shields.io/badge/React-18.8-FFFF22?style=for-the-badge&logo=react" alt="go version" />
     <img src="https://img.shields.io/badge/Version-0.1.0-00AD77?style=for-the-badge&logo=github" alt="version" />
 </p>
 
