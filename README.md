@@ -96,3 +96,7 @@ Now let's create a React application that runs on ```localhost:3000```.
 cd application
 npm start
 ```
+
+<p align="center">
+    <img src=".github/assets/demo.png" alt="demo" />
+</p>
