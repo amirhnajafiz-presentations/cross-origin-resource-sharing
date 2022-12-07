@@ -16,6 +16,11 @@
     border-radius: 3px;
 }
 
+.normal {
+    background: cornflowerblue;
+    color: #e8e8e8;
+}
+
 .green-span {
     background: darkslategrey;
     color: #e8e8e8;

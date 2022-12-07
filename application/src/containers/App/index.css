@@ -1,18 +1,25 @@
 #app {
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 
 .input-form {
     margin-left: 80px;
-    padding: 10px 0;
+    padding: 10px 5px;
 
     width: 300px;
 
-    border: 0 solid black;
+    border: 1px solid black;
     border-bottom: 2px solid black;
+    border-radius: 2px;
 
     font-size: 1.02em;
     outline: none;
+
+    transition: 0.2s border;
+}
+
+.input-form:hover, .input-form:focus {
+    border: 2px solid black;
 }
 
 .submit-btn {
@@ -21,7 +28,7 @@
 
     font-size: 1.1rem;
 
-    margin: 50px 0 15px;
+    margin: 80px 0 15px;
     padding: 10px 20px;
     outline: none;
 

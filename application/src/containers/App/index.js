@@ -104,7 +104,7 @@ class App extends React.Component {
                   className={"form-container"}
               >
                   <label>
-                      <span>Enter name</span>
+                      <span>Enter user Github account name</span>
                       <input
                           className={"input-form"}
                           type="text"
