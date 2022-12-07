@@ -3,7 +3,7 @@ import React from 'react';
 import './index.css';
 
 
-const uri = "http://localhost:3030/api/user/";
+const uri = "/api/user/";
 
 class App extends React.Component {
     constructor(props) {
@@ -12,6 +12,7 @@ class App extends React.Component {
         this.state = {
             user: "",
             response: "No value",
+            userInformation: "No value"
         }
 
         // binding the submit method
@@ -32,12 +33,16 @@ class App extends React.Component {
         fetch(url, null)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                let viewData = JSON.stringify(JSON.parse(data.value), null, 4)
+
                 this.updateResponse("OK")
+                this.updateUserInformation(viewData)
             })
             .catch(e => {
                 console.log(e)
                 this.updateResponse("Not OK")
+
+                this.updateUserInformation("No value")
             })
     }
 
@@ -52,6 +57,13 @@ class App extends React.Component {
     updateResponse(message) {
         this.setState({
             response: message
+        })
+    }
+
+    // update user information
+    updateUserInformation(data) {
+        this.setState({
+            userInformation: data
         })
     }
 
@@ -72,7 +84,9 @@ class App extends React.Component {
                           />
                       </a>
                   </h4>
-                  <h4>
+                  <h4
+                      className={this.state.response === "OK" ? 'green-span' : this.state.response === "Not OK" ? 'red-span' : 'normal'}
+                  >
                       {this.state.response}
                   </h4>
               </div>
@@ -96,7 +110,9 @@ class App extends React.Component {
                   />
               </form>
               <div className={"response"}>
-                  { this.state.response }
+                  <pre>
+                      { this.state.userInformation }
+                  </pre>
               </div>
           </div>
       )

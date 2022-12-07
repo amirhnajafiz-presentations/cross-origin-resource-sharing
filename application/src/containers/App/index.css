@@ -60,4 +60,21 @@
     padding: 50px 100px;
 
     border-top: 2px solid #e8e8e8;
+
+    overflow: scroll;
+}
+
+.normal, .green-span, .red-span {
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.green-span {
+    background: darkslategrey;
+    color: #e8e8e8;
+}
+
+.red-span {
+    background: brown;
+    color: #e8e8e8;
 }
