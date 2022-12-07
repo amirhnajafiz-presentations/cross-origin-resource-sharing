@@ -1,8 +1,9 @@
 import React from "react";
-
-import { fetchPostRequest } from '../../api.js'
+import {RespContext} from "../../context";
 
 import './index.css';
+
+const uri = "http://localhost:3030/api/user/";
 
 // Form component manages to handle the form submit.
 class Form extends React.Component {
@@ -26,8 +27,19 @@ class Form extends React.Component {
             return
         }
 
+        let url = uri + this.state.user
+
         // send http request
-        fetchPostRequest(this.state.user);
+        fetch(url, null)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                RespContext.setResp("OK")
+            })
+            .catch(e => {
+                console.log(e)
+                RespContext.setResp("Not OK")
+            })
     }
 
     // change user

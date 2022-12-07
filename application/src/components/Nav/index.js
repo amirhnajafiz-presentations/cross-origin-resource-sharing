@@ -1,4 +1,6 @@
 import React from 'react';
+import {RespContext} from "../../context";
+
 import './index.css';
 
 // Nav component.
@@ -29,7 +31,9 @@ class Nav extends React.Component {
                     </a>
                 </h4>
                 <h4>
-                    {this.state.status}
+                    <RespContext.Provider value={this.state.status}>
+                        {this.state.status}
+                    </RespContext.Provider>
                 </h4>
             </div>
         )
