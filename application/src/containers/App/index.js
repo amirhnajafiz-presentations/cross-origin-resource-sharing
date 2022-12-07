@@ -2,6 +2,7 @@ import React from 'react';
 
 import Nav from "../../components/Nav";
 import Box from "../../components/Box";
+import Description from "../../components/Description";
 
 import {fetchGetRequest} from "../../api";
 
@@ -121,6 +122,7 @@ class App extends React.Component {
                   response={this.state.response}
                   responseCode={this.state.responseCode}
               />
+              <Description/>
               <form
                   onSubmit={this.handleSubmit}
                   className={"form-container"}
@@ -131,9 +133,14 @@ class App extends React.Component {
                           className={"input-form"}
                           type="text"
                           value={this.state.user}
+                          placeholder={"Github account"}
                           onChange={(e) => this.update(e)}
                       />
                   </label>
+                  <input
+                      value="Clear"
+                      type="reset"
+                  />
                   <input
                       className={"submit-btn"}
                       type="submit"
