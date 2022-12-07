@@ -12,6 +12,8 @@ class App extends React.Component {
         this.state = {
             user: "",
             response: "No value",
+            responseCode: 0,
+            spanClass: "normal",
             userInformation: "No value"
         }
 
@@ -31,17 +33,25 @@ class App extends React.Component {
 
         // send http request
         fetch(url, null)
-            .then(response => response.json())
+            .then(response => {
+                this.updateResponseCode(response.status)
+                return response.json()
+            })
             .then(data => {
                 let viewData = JSON.stringify(JSON.parse(data.value), null, 4)
 
                 this.updateResponse("OK")
+                this.updateSpanClass("green-span")
                 this.updateUserInformation(viewData)
             })
             .catch(e => {
                 console.log(e)
                 this.updateResponse("Not OK")
-
+                if (this.state.responseCode >= 400 && this.state.responseCode < 500) {
+                    this.updateSpanClass('yellow-span')
+                } else if (this.state.responseCode >= 500 && this.state.responseCode < 600) {
+                    this.updateSpanClass("red-span")
+                }
                 this.updateUserInformation("No value")
             })
     }
@@ -60,10 +70,24 @@ class App extends React.Component {
         })
     }
 
+    // update response code
+    updateResponseCode(code) {
+        this.setState({
+            responseCode: code
+        })
+    }
+
     // update user information
     updateUserInformation(data) {
         this.setState({
             userInformation: data
+        })
+    }
+
+    // update class name of span
+    updateSpanClass(className) {
+        this.setState({
+            spanClass: className
         })
     }
 
@@ -85,9 +109,9 @@ class App extends React.Component {
                       </a>
                   </h4>
                   <h4
-                      className={this.state.response === "OK" ? 'green-span' : this.state.response === "Not OK" ? 'red-span' : 'normal'}
+                      className={this.state.spanClass}
                   >
-                      {this.state.response}
+                      {this.state.responseCode !== 0 ? this.state.responseCode + ' - ' : ''}{this.state.response}
                   </h4>
               </div>
               <form

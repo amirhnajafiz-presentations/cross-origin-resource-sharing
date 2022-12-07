@@ -64,7 +64,7 @@
     overflow: scroll;
 }
 
-.normal, .green-span, .red-span {
+.normal, .green-span, .red-span, .yellow-span {
     padding: 10px;
     border-radius: 3px;
 }
@@ -76,5 +76,10 @@
 
 .red-span {
     background: brown;
+    color: #e8e8e8;
+}
+
+.yellow-span {
+    background: coral;
     color: #e8e8e8;
 }
