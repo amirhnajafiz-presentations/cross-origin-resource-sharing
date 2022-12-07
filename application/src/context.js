@@ -1,13 +1,13 @@
 import { createContext } from "react";
 
 const UserContext = createContext({
-    user: '',
+    user: "No value",
     setUser: (data) => {this.user=data}
 });
 
 const RespContext = createContext({
-    resp: '',
-    setResp: (data) => {this.resp=data}
+    resp: "No value",
+    setResp: (message) => {}
 });
 
 export {UserContext, RespContext};

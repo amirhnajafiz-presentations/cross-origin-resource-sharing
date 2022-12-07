@@ -7,8 +7,10 @@ import './index.css';
 function Form() {
     const uri = "http://localhost:3030/api/user/";
 
-    const [user, setUser] = useState()
-    const respCtx = useContext(RespContext)
+    const [user, setUser] = useState("")
+
+    const {setResp} = useContext(RespContext)
+    const updateRespCtx = (message) => setResp(message)
 
     // handle submits
     const handleSubmit = (event) => {
@@ -25,11 +27,11 @@ function Form() {
             .then(response => response.json())
             .then(data => {
                 console.log(data)
-                respCtx.setResp("OK")
+                updateRespCtx("OK")
             })
             .catch(e => {
                 console.log(e)
-                respCtx.setResp("Not OK")
+                updateRespCtx("Not OK")
             })
     }
 
