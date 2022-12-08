@@ -14,15 +14,16 @@ import (
 func Execute() {
 	// creating flags
 	var (
-		mongoDbURI    = flag.String("mongoURI", "", "")
-		mongoDatabase = flag.String("mongoDB", "", "")
+		port     = flag.String("port", "8080", "")
+		mongodb  = flag.String("mongo", "mongodb://127.0.0.1:27017/", "")
+		database = flag.String("database", "cors", "")
 	)
 
 	// parsing flags
 	flag.Parse()
 
 	// opening mongodb connection
-	db, err := mongo.NewConnection(*mongoDbURI, *mongoDatabase)
+	db, err := mongo.NewConnection(*mongodb, *database)
 	if err != nil {
 		log.Println(err)
 
@@ -38,8 +39,8 @@ func Execute() {
 	}
 	h.Register(app)
 
-	// listen on 8080
-	if er := app.Listen(":8080"); er != nil {
+	// listen on given port
+	if er := app.Listen(":" + *port); er != nil {
 		log.Println(er)
 
 		os.Exit(1)
