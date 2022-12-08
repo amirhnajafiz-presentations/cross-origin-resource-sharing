@@ -39,7 +39,7 @@ func (h *Handler) UserGithubRepos(ctx *fiber.Ctx) error {
 	// creating mongo filter
 	filter := bson.D{
 		{"user", user},
-		{"created", bson.D{{"$gte", time.Now().Add(-5 * time.Minute)}}},
+		{"created", bson.D{{"$gte", time.Now().Add(-2 * time.Minute)}}},
 	}
 
 	// creating an empty model
