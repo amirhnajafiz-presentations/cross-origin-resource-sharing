@@ -84,6 +84,7 @@ func (h *Handler) UserGithubRepos(ctx *fiber.Ctx) error {
 
 		userModel.Name = user
 		userModel.Value = string(body)
+		userModel.Created = time.Now()
 
 		// saving the model inside mongodb
 		go func() {
@@ -95,6 +96,7 @@ func (h *Handler) UserGithubRepos(ctx *fiber.Ctx) error {
 
 	// creating a new response
 	response := Response{
+		Date:  userModel.Created,
 		Value: userModel.Value,
 	}
 

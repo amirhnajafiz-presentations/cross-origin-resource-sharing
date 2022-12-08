@@ -1,6 +1,9 @@
 package http
 
+import "time"
+
 // Response type.
 type Response struct {
-	Value string `json:"value"`
+	Date  time.Time `json:"date"`
+	Value string    `json:"value"`
 }
