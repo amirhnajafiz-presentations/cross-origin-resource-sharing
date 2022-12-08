@@ -54,8 +54,16 @@ Let's create a HTTP server with Golang that has the following endpoints and runs
 ```shell
 cd api
 go build . -o ./main
-./main -mongoURI mongodb://127.0.0.1:27017/ -mongoDB cors
+./main
 ```
+
+You can also set the program flags.
+
+|      Flag      | Description           | Default                          |
+|:--------------:|-----------------------|----------------------------------|
+|   ```port```   | Api port              | ```8080```                       |
+|  ```mongo```   | MongoDB URI           | ```mongodb://127.0.0.1:27017/``` |
+| ```database``` | MongoDB database name | ```cors```                       |
 
 Now let's create a React application that runs on ```localhost:3000```.
 
