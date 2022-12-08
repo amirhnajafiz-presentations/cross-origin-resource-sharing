@@ -17,10 +17,11 @@ import (
 )
 
 var (
-	errEmptyUser    = errors.New("user cannot be empty")
-	errParsingModel = errors.New("parsing model failed")
-	errHttpRequest  = errors.New("cannot create http request")
-	errGitHub       = errors.New("cannot connect to github server")
+	// error messages
+	errEmptyUser      = errors.New("user cannot be empty")
+	errParsingModel   = errors.New("parsing model failed")
+	errHttpRequest    = errors.New("cannot create http request")
+	errGitHubResponse = errors.New("cannot connect to github server")
 )
 
 // Handler manages the http endpoint methods.
@@ -36,7 +37,10 @@ func (h *Handler) UserGithubRepos(ctx *fiber.Ctx) error {
 	}
 
 	// creating mongo filter
-	filter := bson.M{"name": user}
+	filter := bson.D{
+		{"user", user},
+		{"created", bson.D{{"$gte", time.Now().Add(-5 * time.Minute)}}},
+	}
 
 	// creating an empty model
 	var userModel model.User
@@ -50,7 +54,7 @@ func (h *Handler) UserGithubRepos(ctx *fiber.Ctx) error {
 			return errParsingModel
 		}
 
-		log.Println("used cache")
+		log.Printf("model restored from mongodb:\n\t%s\n", user)
 	} else {
 		// creating http request
 		req, err := http.NewRequest(
@@ -72,7 +76,7 @@ func (h *Handler) UserGithubRepos(ctx *fiber.Ctx) error {
 		if err != nil {
 			log.Printf("connecting to github failed:\n\t%v\n", err)
 
-			return errGitHub
+			return errGitHubResponse
 		}
 
 		if resp.StatusCode != http.StatusOK {
