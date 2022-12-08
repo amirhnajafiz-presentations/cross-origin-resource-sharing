@@ -6,3 +6,53 @@
 
     overflow: scroll;
 }
+
+.row {
+    width: 50%;
+
+    margin: 0 auto 40px;
+    padding: 20px 40px 20px;
+
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+}
+
+.row-des {
+    font-size: 0.9rem;
+    margin-top: 40px;
+    padding: 20px 5px;
+}
+
+.list {
+    list-style-type: none;
+    margin-top: 50px;
+
+    padding-bottom: 30px;
+    border-bottom: 1px solid #000000;
+}
+
+.list-item {
+    font-size: 0.6em;
+
+    display: inline-block;
+    margin-right: 5px;
+
+    padding: 5px 10px;
+
+    background: #47caff;
+    color: #ffffff;
+
+    border-radius: 15px;
+}
+
+.row-opt {
+    display: flex;
+    justify-content: space-around;
+
+    margin-top: 20px;
+}
+
+.row-link {
+    outline: none;
+    color: inherit;
+}

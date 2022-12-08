@@ -65,7 +65,7 @@ class App extends React.Component {
                     return;
                 }
 
-                let viewData = JSON.stringify(JSON.parse(data.value), null, 4);
+                let viewData = JSON.parse(data.value);
 
                 this.updateResponse("OK");
                 this.updateUserInformation(viewData);
